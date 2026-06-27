@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apollo Oncology — Patient Flow &amp; Experience Intelligence</title>
+<meta name="description" content="A findings dashboard combining Apollo Hospitals' oncology chemotherapy scheduling study (Phase I & II) with the 150-patient experience and loyalty survey.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="vital-progress" aria-hidden="true"><div class="vital-progress__fill" id="scrollFill"></div></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="nav-wrap">
+    <a href="#top" class="brand">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 40 24" fill="none"><path d="M1 12H9L12 4L17 20L21 9L24 15L27 12H39" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand__text">Apollo Oncology<em>Intelligence</em></span>
+    </a>
+    <nav class="primary-nav" id="primaryNav">
+      <a href="#journey" data-nav>Patient Journey</a>
+      <a href="#patients" data-nav>Who We Serve</a>
+      <a href="#drivers" data-nav>Decision Drivers</a>
+      <a href="#experience" data-nav>Experience</a>
+      <a href="#loyalty" data-nav>Loyalty &amp; NPS</a>
+      <a href="#insights" data-nav>Action Points</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero__waveform" aria-hidden="true">
+      <svg viewBox="0 0 1200 220" preserveAspectRatio="none">
+        <path id="pulsePath" d="M0,140 L120,140 L150,140 L168,40 L190,200 L210,110 L240,140 L420,140 L450,140 L468,40 L490,200 L510,110 L540,140 L720,140 L750,140 L768,40 L790,200 L810,110 L840,140 L1020,140 L1050,140 L1068,40 L1090,200 L1110,110 L1140,140 L1200,140"
+          fill="none" stroke="url(#pulseGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="pulseGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#E2603D" stop-opacity="0"/>
+            <stop offset="0.15" stop-color="#E2603D" stop-opacity="0.9"/>
+            <stop offset="0.85" stop-color="#4F9D86" stop-opacity="0.9"/>
+            <stop offset="1" stop-color="#4F9D86" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="hero__inner">
+      <p class="eyebrow">Apollo Hospitals · Oncology Department · Internal Findings Dashboard</p>
+      <h1 class="hero__title">Two studies, one patient.<br>Here's what the data says about the journey through chemotherapy.</h1>
+      <p class="hero__sub">A combined read of the chemotherapy scheduling audit (Phase I → Phase&nbsp;II, 132 → 332 patients) and the 150-patient oncology experience &amp; loyalty survey — built for action, not just reporting.</p>
+
+      <div class="hero__stats" id="heroStats">
+        <div class="stat-block">
+          <span class="stat-block__num" data-count="49.3" data-decimals="1">0</span>
+          <span class="stat-block__label">Overall NPS score<br><small>vs. 30–50 industry benchmark</small></span>
+        </div>
+        <div class="stat-block stat-block--accent">
+          <span class="stat-block__num" data-count="13" data-suffix="%">0</span>
+          <span class="stat-block__label">Faster avg. turnaround time<br><small>Phase I → Phase II, despite 2.5× more patients</small></span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-block__num" data-count="91" data-suffix="%">0</span>
+          <span class="stat-block__label">Feel care is well-coordinated<br><small>across departments (n=150)</small></span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-block__num" data-count="464" data-format="plain">0</span>
+          <span class="stat-block__label">Patients studied in total<br><small>332 scheduling · 150 experience<sup>†</sup></small></span>
+        </div>
+      </div>
+      <p class="hero__footnote">† Sampling windows overlap; figures are reported as published in each study, not merged into one cohort.</p>
+    </div>
+  </section>
+
+  <!-- ===================== JOURNEY ===================== -->
+  <section class="section section--light" id="journey">
+    <div class="section__head">
+      <span class="section__kicker">01 — Chemotherapy Scheduling</span>
+      <h2>The patient journey, timed twice</h2>
+      <p class="section__intro">Phase I (132 patients) measured the chemotherapy day end-to-end and surfaced where time was being lost. Phase II (332 patients) re-measured the same six steps after operational changes went in. Below is each step, desired vs. actual, both rounds.</p>
+    </div>
+
+    <div class="journey-timeline" id="journeyTimeline"><!-- populated by JS --></div>
+
+    <div class="tat-banner">
+      <div class="tat-banner__chart">
+        <canvas id="tatChart" height="260"></canvas>
+      </div>
+      <div class="tat-banner__copy">
+        <h3>Total turnaround time fell, even with the heavier caseload</h3>
+        <p>Cash-paying patients saw the biggest single gain — discharge duration dropped from <strong>3.0h to 1.48h</strong>, more than halved. That alone pulled overall TAT down even though arrival-to-admission wait actually <em>lengthened</em> as volume tripled.</p>
+        <div class="delta-row">
+          <div class="delta-pill delta-pill--good">Cash TAT <strong>8.1h → 7.16h</strong> <span>−11.6%</span></div>
+          <div class="delta-pill delta-pill--good">Credit TAT <strong>8.37h → 7.12h</strong> <span>−14.9%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-card info-card--bottleneck">
+        <h3><span class="info-card__icon">⛔</span>Where the time was going (Phase I diagnosis)</h3>
+        <ul>
+          <li>Initial drug-chart preparation delayed the start of almost every patient's wait clock.</li>
+          <li>Bed crunch: on an average morning, only <strong>34 of 39 beds</strong> were actually workable.</li>
+          <li>Discharge slowed by delays in PAT and in preparing/receiving the final discharge summary &amp; bill.</li>
+          <li>Insurance discharges requested after <strong>9 PM</strong> routinely became next-day stay-backs — billing staff thinned out by then.</li>
+        </ul>
+      </div>
+      <div class="info-card info-card--suggestion">
+        <h3><span class="info-card__icon">✅</span>What was recommended</h3>
+        <ul>
+          <li>Add transit beds and night-shift manpower specifically for evening/overnight discharges.</li>
+          <li>Get MS Office support looped in to nudge doctor teams and shrink arrival-to-admission time.</li>
+          <li>Fast-track the discharge-summary workflow so billing isn't the last domino.</li>
+          <li>Clinical care flagged an equipment gap: infusion pumps &amp; cardiac monitors needed urgently.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PATIENTS / WHO WE SERVE ===================== -->
+  <section class="section section--dark" id="patients">
+    <div class="section__head">
+      <span class="section__kicker">02 — Patient Survey, n=150</span>
+      <h2>Who actually walks through the door</h2>
+      <p class="section__intro">Demographics and referral patterns from the experience survey, run independently of the scheduling study.</p>
+    </div>
+
+    <div class="grid-cards grid-cards--3">
+      <div class="chart-card">
+        <h4>Age skew</h4>
+        <canvas id="ageChart" height="220"></canvas>
+        <p class="chart-card__note">Senior patients (60+) are the single largest age band, at <strong>42.2%</strong> of all cases.</p>
+      </div>
+      <div class="chart-card">
+        <h4>Where patients travel from</h4>
+        <canvas id="locationChart" height="220"></canvas>
+        <p class="chart-card__note">Hyderabad alone supplies <strong>40%</strong> of footfall; <strong>14.7%</strong> of patients travelled internationally.</p>
+      </div>
+      <div class="chart-card">
+        <h4>Referral concentration</h4>
+        <canvas id="doctorChart" height="220"></canvas>
+        <p class="chart-card__note">One doctor — Dr. Vijay Anand Reddy — accounts for <strong>18%</strong> of all patients on his own; 15 doctors were captured in total.</p>
+      </div>
+    </div>
+
+    <div class="callout-row">
+      <div class="callout">
+        <span class="callout__tag">Acquisition</span>
+        <p>Walk-ins are the dominant channel — up to <strong>63%</strong> of footfall — and <strong>&gt;90%</strong> of walk-ins arrive already carrying a specific doctor's name. Digital channels get used during research, but stay a secondary touchpoint.</p>
+      </div>
+      <div class="callout">
+        <span class="callout__tag">PSU mix</span>
+        <p>Among the small PSU patient segment (n=14), <strong>NMDC</strong> leads admissions with 6 patients — <strong>42.9%</strong> of that group.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DECISION DRIVERS ===================== -->
+  <section class="section section--light" id="drivers">
+    <div class="section__head">
+      <span class="section__kicker">03 — Patient Survey, n=150</span>
+      <h2>Why patients choose Apollo — and when they look elsewhere</h2>
+    </div>
+
+    <div class="two-col two-col--uneven">
+      <div class="chart-card chart-card--tall">
+        <h4>The cost perception gap</h4>
+        <canvas id="costGapChart" height="240"></canvas>
+        <p class="chart-card__note"><strong>65.1%</strong> of patients flag cost as a pre-visit concern, but only <strong>7.2%</strong> actually consider switching hospitals because of price. The anxiety is mostly about clarity, not affordability.</p>
+      </div>
+      <div class="stack">
+        <div class="info-card info-card--why">
+          <h3>Why Apollo, specifically</h3>
+          <p>Patients consistently cite a combination of three things — none stands alone:</p>
+          <div class="tag-row">
+            <span class="tag">Doctor's reputation</span>
+            <span class="tag">Brand trust</span>
+            <span class="tag">Technology &amp; treatment</span>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h4>When patients do look elsewhere, why?</h4>
+          <canvas id="switchChart" height="170"></canvas>
+          <p class="chart-card__note"><strong>60.8%</strong> of those who considered another hospital did so for a <strong>second opinion</strong>; <strong>32%</strong> cited location feasibility — mostly international and out-of-Hyderabad patients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section class="section section--light section--alt" id="experience">
+    <div class="section__head">
+      <span class="section__kicker">04 — Patient Survey, n=150</span>
+      <h2>Experience &amp; satisfaction, in patients' own words</h2>
+    </div>
+
+    <div class="grid-cards grid-cards--3">
+      <div class="chart-card">
+        <h4>Is care well-coordinated across departments?</h4>
+        <canvas id="coordChart" height="220"></canvas>
+        <p class="chart-card__note">The 9% (14 patients) who said no pointed mainly to billing handoffs and unclear communication.</p>
+      </div>
+      <div class="info-card">
+        <h3>New vs. returning patients</h3>
+        <p>Both groups rate <strong>waiting time</strong> low — it's a shared pain point. But first-time visitors specifically rate <strong>billing clarity</strong> lower than returning patients, who've already learned how the process works.</p>
+      </div>
+      <div class="info-card info-card--accent">
+        <h3>What patients ask for, unprompted</h3>
+        <p><strong>47%</strong> of open-ended suggestions are about faster processes and shorter waits. The remainder clusters around two themes: clearer communication and cost transparency.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LOYALTY / NPS ===================== -->
+  <section class="section section--dark" id="loyalty">
+    <div class="section__head">
+      <span class="section__kicker">05 — Patient Survey, n=150</span>
+      <h2>Loyalty &amp; advocacy: the NPS picture</h2>
+    </div>
+
+    <div class="nps-banner">
+      <div class="nps-gauge-wrap">
+        <svg id="npsGauge" viewBox="0 0 320 200" class="nps-gauge"></svg>
+        <div class="nps-gauge__readout">
+          <span class="nps-gauge__num">49.3</span>
+          <span class="nps-gauge__label">Overall NPS</span>
+        </div>
+      </div>
+      <div class="nps-banner__copy">
+        <p>The global healthcare benchmark for NPS sits between <strong>30 and 50</strong>; anything above 50 is considered excellent. Apollo Oncology lands at <strong>49.3</strong> — solidly inside the strong-benchmark band, just shy of "excellent."</p>
+        <div class="two-col two-col--tight">
+          <div class="mini-card">
+            <h4>Where detractors cluster</h4>
+            <p>Almost entirely based in <strong>Hyderabad &amp; Telangana</strong>, and predominantly <strong>45+</strong>. Out-of-town and international patients are disproportionately satisfied.</p>
+          </div>
+          <div class="mini-card">
+            <h4>What detractors say</h4>
+            <p>They rate <strong>doctor communication</strong> highly — but score every other service dimension lower than promoters do.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-cards grid-cards--2">
+      <div class="chart-card chart-card--dark">
+        <h4>Doctors whose patients give high NPS (≥60)</h4>
+        <div class="doctor-list doctor-list--good">
+          <span>Dr. Nikhil</span><span>Dr. Rekha</span><span>Dr. Satyesh</span><span>Dr. Venkat</span>
+        </div>
+      </div>
+      <div class="chart-card chart-card--dark">
+        <h4>Doctors whose patients give lower NPS (&lt;50)</h4>
+        <div class="doctor-list doctor-list--watch">
+          <span>Dr. Ramu</span><span>Dr. Umanath</span><span>Dr. SVSS Prasad</span><span>Dr. Srinath</span><span>Dr. Sanjay</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card chart-card--dark chart-card--wide">
+      <h4>Among lower-scoring patients, the top asks</h4>
+      <canvas id="detractorChart" height="140"></canvas>
+      <p class="chart-card__note">Cost transparency is the single largest detractor suggestion (~12%), followed by better communication (~7.6%).</p>
+    </div>
+  </section>
+
+  <!-- ===================== KEY DRIVERS / INSIGHTS / ACTION ===================== -->
+  <section class="section section--light" id="insights">
+    <div class="section__head">
+      <span class="section__kicker">06 — Insights &amp; Action</span>
+      <h2>What drives recommendation — and what to do about it</h2>
+      <p class="section__intro">A regression model on survey responses ranked five factors by how strongly each predicts a patient recommending Apollo to someone else.</p>
+    </div>
+
+    <ol class="rank-list" id="rankList"><!-- populated by JS --></ol>
+
+    <div class="section__head section__head--tight">
+      <h3>Six insights worth sitting with</h3>
+    </div>
+    <div class="grid-cards grid-cards--3" id="insightGrid"><!-- populated by JS --></div>
+  </section>
+
+  <section class="section section--dark section--action" id="action">
+    <div class="section__head">
+      <span class="section__kicker">Recommended next moves</span>
+      <h2>Three action points from the survey team</h2>
+    </div>
+    <div class="action-grid">
+      <div class="action-card">
+        <span class="action-card__num">01</span>
+        <h3>Make "Apollo Second Opinion" a flagship service</h3>
+        <p>Stop treating it as a fallback option. Build a brand narrative around clinical validation and complex-case resolution, promote a digital second-opinion path, and follow up with every patient who seeks one.</p>
+      </div>
+      <div class="action-card">
+        <span class="action-card__num">02</span>
+        <h3>Re-sequence the brand message</h3>
+        <p>Lead with clinical excellence, doctor credibility, and patient testimonials. Let technology support that claim rather than open with it. And shift cost conversations from price to value — the anxiety is about clarity, not affordability.</p>
+      </div>
+      <div class="action-card">
+        <span class="action-card__num">03</span>
+        <h3>Proactively enrol patients 45+ into Apollo Assist</h3>
+        <p>This is the group most likely to become a detractor. Reach them by WhatsApp or SMS before their visit, and have an Apollo Assist SPOC meet them at the entrance.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p>Built from three internal Apollo Hospitals Oncology decks: <em>Chemotherapy Scheduling — Phase I</em> (n=132), <em>Chemotherapy Scheduling — Phase II</em> (n=332), and the <em>Apollo Oncology Patient Experience Survey</em> (n=150). Figures are reproduced as reported in the source studies; no statistic on this page has been invented or interpolated.</p>
+    <a href="#top" class="back-to-top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
