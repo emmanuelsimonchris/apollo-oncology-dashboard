@@ -8,6 +8,22 @@
 
 const APOLLO_DATA = {
 
+  journeyStats: [
+    { value: "132 → 332", label: "Patients studied", note: "Phase I to Phase II — a 2.5× larger sample" },
+    { value: "6", label: "Process stages timed", note: "Arrival through discharge, clocked both rounds" },
+    { value: "13%", label: "Avg. TAT improvement", note: "Even as patient volume more than doubled" },
+    { value: "34 / 39", label: "Workable beds, avg. morning", note: "≈87% bed availability flagged in Phase I" }
+  ],
+
+  processFlow: [
+    { stage: "Arrival", detail: "Patient checks in for the chemo day" },
+    { stage: "Admission", detail: "Bed assigned, vitals logged" },
+    { stage: "Drug Delivery", detail: "Pharmacy dispenses the regimen" },
+    { stage: "Pre-Meds", detail: "Anti-nausea & prep medication given" },
+    { stage: "Chemotherapy", detail: "Infusion runs its course" },
+    { stage: "Discharge", detail: "Billing, summary, and exit" }
+  ],
+
   journeySteps: [
     {
       label: "Wait Time",
@@ -134,7 +150,11 @@ const APOLLO_DATA = {
   suggestions: [
     "Add transit beds and night-shift manpower specifically for evening/overnight discharges.",
     "Get MS Office support looped in to nudge doctor teams and shrink arrival-to-admission time.",
-    "Fast-track the discharge-summary workflow so billing isn't the last domino.",
-    "Clinical care flagged an equipment gap: infusion pumps & cardiac monitors needed urgently."
+    "Fast-track the discharge-summary workflow so billing isn't the last domino."
+  ],
+
+  clinicalNeeds: [
+    "Infusion pumps and cardiac monitors flagged as an urgent equipment gap.",
+    "Raised in the Phase I clinical care notes, alongside the scheduling bottlenecks."
   ]
 };

@@ -6,16 +6,16 @@
   "use strict";
 
   const COLORS = {
-    ink: "#102A36",
-    paper: "#F6F7F5",
-    coral: "#E2603D",
-    coralDim: "#F2A48C",
-    sage: "#4F9D86",
-    sageDim: "#BFE0D4",
-    amber: "#D9A23B",
-    muted: "#9FB3B8",
-    line: "rgba(16,42,54,0.08)",
-    lineOnDark: "rgba(246,247,245,0.12)"
+    ink: "#0F2733",
+    paper: "#F7F7F4",
+    terracotta: "#C1542F",
+    terracottaDim: "#E3B79E",
+    teal: "#2F7A68",
+    tealDim: "#BFDBD2",
+    gold: "#B98A3D",
+    muted: "#9FB4B1",
+    line: "rgba(15,39,51,0.08)",
+    lineOnDark: "rgba(247,247,244,0.12)"
   };
 
   const FONT = {
@@ -25,7 +25,7 @@
 
   Chart.defaults.font.family = FONT.family;
   Chart.defaults.font.size = FONT.size;
-  Chart.defaults.color = "#5C6B70";
+  Chart.defaults.color = "#5B6B6E";
 
   function baseGridOptions(onDark) {
     return {
@@ -36,7 +36,7 @@
 
   function commonTooltip() {
     return {
-      backgroundColor: "#102A36",
+      backgroundColor: "#0F2733",
       titleFont: { family: FONT.family, weight: "600" },
       bodyFont: { family: "'IBM Plex Mono', monospace" },
       padding: 10,
@@ -106,8 +106,8 @@
       data: {
         labels: APOLLO_DATA.tat.labels,
         datasets: [
-          { label: "Phase I (n=132)", data: APOLLO_DATA.tat.phase1, backgroundColor: COLORS.amber, borderRadius: 6, maxBarThickness: 56 },
-          { label: "Phase II (n=332)", data: APOLLO_DATA.tat.phase2, backgroundColor: COLORS.sage, borderRadius: 6, maxBarThickness: 56 }
+          { label: "Phase I (n=132)", data: APOLLO_DATA.tat.phase1, backgroundColor: COLORS.gold, borderRadius: 6, maxBarThickness: 56 },
+          { label: "Phase II (n=332)", data: APOLLO_DATA.tat.phase2, backgroundColor: COLORS.teal, borderRadius: 6, maxBarThickness: 56 }
         ]
       },
       options: {
@@ -132,7 +132,7 @@
       type: "doughnut",
       data: {
         labels: ["60+ years", "Under 60"],
-        datasets: [{ data: [APOLLO_DATA.age.over60, APOLLO_DATA.age.under60], backgroundColor: [COLORS.coral, "#E7ECEA"], borderWidth: 0 }]
+        datasets: [{ data: [APOLLO_DATA.age.over60, APOLLO_DATA.age.under60], backgroundColor: [COLORS.terracotta, "#E7ECEA"], borderWidth: 0 }]
       },
       options: donutOptions("42.2%", "are 60+")
     });
@@ -146,7 +146,7 @@
       type: "doughnut",
       data: {
         labels: ["Hyderabad", "Elsewhere"],
-        datasets: [{ data: [APOLLO_DATA.location.hyderabad, APOLLO_DATA.location.elsewhere], backgroundColor: [COLORS.sage, "#E7ECEA"], borderWidth: 0 }]
+        datasets: [{ data: [APOLLO_DATA.location.hyderabad, APOLLO_DATA.location.elsewhere], backgroundColor: [COLORS.teal, "#E7ECEA"], borderWidth: 0 }]
       },
       options: donutOptions("40%", "from Hyderabad")
     });
@@ -176,10 +176,10 @@
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.font = "700 22px 'IBM Plex Mono', monospace";
-      ctx.fillStyle = "#102A36";
+      ctx.fillStyle = "#0F2733";
       ctx.fillText(opts.num, cx, cy - 8);
       ctx.font = "500 11px 'Inter', sans-serif";
-      ctx.fillStyle = "#5C6B70";
+      ctx.fillStyle = "#5B6B6E";
       ctx.fillText(opts.label, cx, cy + 12);
       ctx.restore();
     }
@@ -196,7 +196,7 @@
         labels: [APOLLO_DATA.doctorFrequency.topDoctorName, "Other 14 doctors"],
         datasets: [{
           data: [APOLLO_DATA.doctorFrequency.topDoctor, APOLLO_DATA.doctorFrequency.others],
-          backgroundColor: [COLORS.coral, "#E7ECEA"],
+          backgroundColor: [COLORS.terracotta, "#E7ECEA"],
           borderRadius: 6,
           maxBarThickness: 46
         }]
@@ -226,7 +226,7 @@
         labels: ["Flag cost as a\npre-visit concern", "Actually switch\nhospitals over price"],
         datasets: [{
           data: [APOLLO_DATA.costGap.preVisitConcern, APOLLO_DATA.costGap.actualSwitch],
-          backgroundColor: [COLORS.amber, COLORS.sage],
+          backgroundColor: [COLORS.gold, COLORS.teal],
           borderRadius: 6,
           maxBarThickness: 80
         }]
@@ -255,7 +255,7 @@
         labels: ["Second opinion", "Location feasibility"],
         datasets: [{
           data: [APOLLO_DATA.hospitalSwitchReasons.secondOpinion, APOLLO_DATA.hospitalSwitchReasons.locationFeasibility],
-          backgroundColor: [COLORS.coral, COLORS.sage],
+          backgroundColor: [COLORS.terracotta, COLORS.teal],
           borderRadius: 6,
           maxBarThickness: 50
         }]
@@ -283,7 +283,7 @@
       type: "doughnut",
       data: {
         labels: ["Yes, coordinated", "No, gaps reported"],
-        datasets: [{ data: [APOLLO_DATA.careCoordination.yes, APOLLO_DATA.careCoordination.no], backgroundColor: [COLORS.sage, COLORS.coral], borderWidth: 0 }]
+        datasets: [{ data: [APOLLO_DATA.careCoordination.yes, APOLLO_DATA.careCoordination.no], backgroundColor: [COLORS.teal, COLORS.terracotta], borderWidth: 0 }]
       },
       options: donutOptions("91%", "say yes")
     });
@@ -299,7 +299,7 @@
         labels: ["Cost transparency", "Better communication"],
         datasets: [{
           data: [APOLLO_DATA.detractorAsks.costTransparency, APOLLO_DATA.detractorAsks.betterCommunication],
-          backgroundColor: [COLORS.coral, COLORS.amber],
+          backgroundColor: [COLORS.terracotta, COLORS.gold],
           borderRadius: 6,
           maxBarThickness: 40
         }]
@@ -374,6 +374,46 @@
     });
   }
 
+  /* ---------- Quick stats strip for the journey section ---------- */
+  function renderJourneyStats() {
+    const wrap = document.getElementById("journeyStats");
+    if (!wrap) return;
+    APOLLO_DATA.journeyStats.forEach(s => {
+      const card = document.createElement("div");
+      card.className = "stat-strip__item";
+      card.innerHTML = `
+        <span class="stat-strip__value">${s.value}</span>
+        <span class="stat-strip__label">${s.label}</span>
+        <span class="stat-strip__note">${s.note}</span>
+      `;
+      wrap.appendChild(card);
+    });
+  }
+
+  /* ---------- Process-flow diagram ---------- */
+  function renderProcessFlow() {
+    const wrap = document.getElementById("processFlow");
+    if (!wrap) return;
+    APOLLO_DATA.processFlow.forEach((step, i) => {
+      const node = document.createElement("div");
+      node.className = "flow-node";
+      node.innerHTML = `
+        <div class="flow-node__dot">${i + 1}</div>
+        <div class="flow-node__body">
+          <h5>${step.stage}</h5>
+          <p>${step.detail}</p>
+        </div>
+      `;
+      wrap.appendChild(node);
+      if (i < APOLLO_DATA.processFlow.length - 1) {
+        const arrow = document.createElement("div");
+        arrow.className = "flow-arrow";
+        arrow.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+        wrap.appendChild(arrow);
+      }
+    });
+  }
+
   /* ---------- Build journey timeline, rank list, insight grid (DOM, not charts) ---------- */
   function renderRankList() {
     const list = document.getElementById("rankList");
@@ -410,6 +450,8 @@
 
   /* ---------- init ---------- */
   document.addEventListener("DOMContentLoaded", () => {
+    renderJourneyStats();
+    renderProcessFlow();
     renderJourneyTimeline();
     renderRankList();
     renderInsightGrid();

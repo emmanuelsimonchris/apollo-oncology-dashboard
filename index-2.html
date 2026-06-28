@@ -59,39 +59,45 @@
 
     <div class="hero__inner">
       <p class="eyebrow">Apollo Hospitals · Oncology Department · Internal Findings Dashboard</p>
-      <h1 class="hero__title">Two projects, one patient.<br>Here's what the data says about the journey through chemotherapy.</h1>
+      <h1 class="hero__title">Two studies, one patient.<br>Here's what the data says about the journey through chemotherapy.</h1>
       <p class="hero__sub">A combined read of the chemotherapy scheduling audit (Phase I → Phase&nbsp;II, 132 → 332 patients) and the 150-patient oncology experience &amp; loyalty survey — built for action, not just reporting.</p>
 
       <div class="hero__stats" id="heroStats">
-        <div class="stat-block">
-          <span class="stat-block__num" data-count="49.3" data-decimals="1">0</span>
-          <span class="stat-block__label">Overall NPS score<br><small>vs. 30–50 industry benchmark</small></span>
-        </div>
         <div class="stat-block stat-block--accent">
           <span class="stat-block__num" data-count="13" data-suffix="%">0</span>
           <span class="stat-block__label">Faster avg. turnaround time<br><small>Phase I → Phase II, despite 2.5× more patients</small></span>
         </div>
         <div class="stat-block">
+          <span class="stat-block__num" data-count="332" data-format="plain">0</span>
+          <span class="stat-block__label">Patients in Phase II<br><small>up from 132 in Phase I</small></span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-block__num" data-count="49.3" data-decimals="1">0</span>
+          <span class="stat-block__label">Overall NPS score<br><small>vs. 30–50 industry benchmark</small></span>
+        </div>
+        <div class="stat-block">
           <span class="stat-block__num" data-count="91" data-suffix="%">0</span>
           <span class="stat-block__label">Feel care is well-coordinated<br><small>across departments (n=150)</small></span>
         </div>
-        <div class="stat-block">
-          <span class="stat-block__num" data-count="614" data-format="plain">0</span>
-          <span class="stat-block__label">Patients studied in total<br><small>332 scheduling · 150 experience<sup>†</sup></small></span>
-        </div>
       </div>
-      <p class="hero__footnote">† Sampling windows overlap; figures are reported as published in each study, not merged into one cohort.</p>
+      <p class="hero__footnote">Two independent studies, read side by side — chemo scheduling (n=132 → 332) and the patient experience survey (n=150).</p>
     </div>
   </section>
 
   <!-- ===================== JOURNEY ===================== -->
   <section class="section section--light" id="journey">
     <div class="section__head">
-      <span class="section__kicker">01 — Chemotherapy Scheduling</span>
+      <span class="section__kicker">01 — Chemotherapy Scheduling · The flagship study</span>
       <h2>The patient journey, timed twice</h2>
-      <p class="section__intro">Phase I (132 patients) measured the chemotherapy day end-to-end and surfaced where time was being lost. Phase II (332 patients) re-measured the same six steps after operational changes went in. Below is each step, desired vs. actual, both rounds.</p>
+      <p class="section__intro">Phase I (132 patients) measured the chemotherapy day end-to-end and surfaced where time was being lost. Phase II (332 patients) re-measured the same six steps after operational changes went in — at more than double the caseload.</p>
     </div>
 
+    <div class="stat-strip" id="journeyStats"><!-- populated by JS --></div>
+
+    <h3 class="subsection-title">How a chemo day actually flows</h3>
+    <div class="process-flow" id="processFlow"><!-- populated by JS --></div>
+
+    <h3 class="subsection-title">Each stage, against target — both rounds</h3>
     <div class="journey-timeline" id="journeyTimeline"><!-- populated by JS --></div>
 
     <div class="tat-banner">
@@ -108,9 +114,10 @@
       </div>
     </div>
 
-    <div class="two-col">
+    <h3 class="subsection-title">What was slowing things down — and what's being done about it</h3>
+    <div class="grid-cards grid-cards--3">
       <div class="info-card info-card--bottleneck">
-        <h3><span class="info-card__icon">⛔</span>Where the time was going (Phase I diagnosis)</h3>
+        <h3><span class="info-card__icon">⛔</span>Where the time was going</h3>
         <ul>
           <li>Initial drug-chart preparation delayed the start of almost every patient's wait clock.</li>
           <li>Bed crunch: on an average morning, only <strong>34 of 39 beds</strong> were actually workable.</li>
@@ -124,7 +131,13 @@
           <li>Add transit beds and night-shift manpower specifically for evening/overnight discharges.</li>
           <li>Get MS Office support looped in to nudge doctor teams and shrink arrival-to-admission time.</li>
           <li>Fast-track the discharge-summary workflow so billing isn't the last domino.</li>
-          <li>Clinical care flagged an equipment gap: infusion pumps &amp; cardiac monitors needed urgently.</li>
+        </ul>
+      </div>
+      <div class="info-card info-card--equipment">
+        <h3><span class="info-card__icon">🩺</span>Clinical care ask</h3>
+        <ul>
+          <li>Infusion pumps and cardiac monitors flagged as an urgent equipment gap.</li>
+          <li>Raised in the Phase I clinical care notes, alongside the scheduling bottlenecks.</li>
         </ul>
       </div>
     </div>
@@ -320,7 +333,7 @@
 
 <footer class="site-footer">
   <div class="site-footer__inner">
-    
+    <p>Built from three internal Apollo Hospitals Oncology decks: <em>Chemotherapy Scheduling — Phase I</em> (n=132), <em>Chemotherapy Scheduling — Phase II</em> (n=332), and the <em>Apollo Oncology Patient Experience Survey</em> (n=150). Figures are reproduced as reported in the source studies; no statistic on this page has been invented or interpolated.</p>
     <a href="#top" class="back-to-top">Back to top ↑</a>
   </div>
 </footer>

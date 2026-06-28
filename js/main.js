@@ -59,12 +59,12 @@
     const target = parseFloat(el.getAttribute("data-count"));
     const decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
     const suffix = el.getAttribute("data-suffix") || "";
-    const duration = 1400;
+    const duration = 1800;
     const start = performance.now();
 
     function tick(now) {
       const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
+      const eased = 1 - Math.pow(1 - t, 2.2);
       const val = target * eased;
       el.textContent = val.toFixed(decimals) + suffix;
       if (t < 1) requestAnimationFrame(tick);
