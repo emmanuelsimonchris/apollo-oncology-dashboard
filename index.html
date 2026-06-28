@@ -176,39 +176,62 @@
   </section>
 
   <!-- ===================== DECISION DRIVERS ===================== -->
-  <section class="section section--light" id="drivers">
+<section class="section section--light" id="drivers">
     <div class="section__head">
-      <span class="section__kicker">03 — Patient Survey, n=150</span>
-      <h2>Why patients choose Apollo — and when they look elsewhere</h2>
+        <span class="section__kicker">03 — Patient Survey, n=150</span>
+        <h2>Why patients choose Apollo — and when they look elsewhere</h2>
     </div>
 
-   
-      <div class="chart-card chart-card--tall">
-        <h4>The cost perception gap</h4>
-        <canvas id="costGapChart" height="240"></canvas>
-        <p class="chart-card__note"><strong>65.1%</strong> of patients flag cost as a pre-visit concern, but only <strong>7.2%</strong> actually consider switching hospitals because of price. The anxiety is mostly about clarity, not affordability.</p>
-      </div>
-      <div class="stack">
-      <div class="info-card info-card--why">
-        <h3>Why Apollo, specifically</h3>
-        <p>Patients consistently cite a combination of three things — none stands alone:</p>
-       <div class="tag-row">
-          <span class="tag">Doctor's reputation</span>
-          <span class="tag">Brand trust</span>
-          <span class="tag">Technology &amp; treatment</span>
-        </div>
-        </div>
-      <div class="chart-card">
-        <h4>When patients do look elsewhere, why?</h4>
-        <canvas id="switchChart" height="170"></canvas>
-        <p class="chart-card__note"><strong>60.8%</strong> of those who considered another hospital did so for a <strong>second opinion</strong>; <strong>32%</strong> cited location feasibility — mostly international and out-of-Hyderabad patients.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-      
-  
+    <div class="drivers-layout">
 
+        <!-- LEFT COLUMN -->
+        <div class="chart-card chart-card--tall">
+            <h4>The cost perception gap</h4>
+
+            <canvas id="costGapChart" height="260"></canvas>
+
+            <p class="chart-card__note">
+                <strong>65.1%</strong> of patients flag cost as a pre-visit concern,
+                but only <strong>7.2%</strong> actually consider switching hospitals
+                because of price. The anxiety is mostly about clarity, not affordability.
+            </p>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="stack">
+
+            <div class="info-card info-card--why">
+                <h3>Why Apollo, specifically</h3>
+
+                <p>
+                    Patients consistently cite a combination of three things —
+                    none stands alone:
+                </p>
+
+                <div class="tag-row">
+                    <span class="tag">Doctor's reputation</span>
+                    <span class="tag">Brand trust</span>
+                    <span class="tag">Technology &amp; treatment</span>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h4>When patients do look elsewhere, why?</h4>
+
+                <canvas id="switchChart" height="180"></canvas>
+
+                <p class="chart-card__note">
+                    <strong>60.8%</strong> of those who considered another hospital
+                    did so for a <strong>second opinion</strong>;
+                    <strong>32%</strong> cited location feasibility —
+                    mostly international and out-of-Hyderabad patients.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
   <!-- ===================== EXPERIENCE ===================== -->
   <section class="section section--light section--alt" id="experience">
     <div class="section__head">
