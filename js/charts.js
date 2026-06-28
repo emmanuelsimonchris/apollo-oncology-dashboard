@@ -332,12 +332,16 @@
     const valueToAngle = v => 180 - ((v + 100) / 200) * 180; // -100..100 -> 180..0 degrees
 
     function arcPath(startVal, endVal, radius) {
-      const a0 = valueToAngle(startVal) * Math.PI / 180;
-      const a1 = valueToAngle(endVal) * Math.PI / 180;
-      const x0 = cx - radius * Math.cos(a0), y0 = cy - radius * Math.sin(a0);
-      const x1 = cx - radius * Math.cos(a1), y1 = cy - radius * Math.sin(a1);
-      const largeArc = Math.abs(a1 - a0) > Math.PI ? 1 : 0;
-      return `M ${x0} ${y0} A ${radius} ${radius} 0 ${largeArc} 1 ${x1} ${y1}`;
+      const steps = 48;
+      const points = [];
+      for (let i = 0; i <= steps; i++) {
+        const v = startVal + (endVal - startVal) * (i / steps);
+        const a = valueToAngle(v) * Math.PI / 180;
+        const x = cx - radius * Math.cos(a);
+        const y = cy - radius * Math.sin(a);
+        points.push(`${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`);
+      }
+      return points.join(" ");
     }
 
     const ns = "http://www.w3.org/2000/svg";
@@ -348,27 +352,27 @@
     }
 
     // base track
-    svg.appendChild(el("path", { d: arcPath(-100, 100, r), fill: "none", stroke: "rgba(246,247,245,0.12)", "stroke-width": 18, "stroke-linecap": "round" }));
+    svg.appendChild(el("path", { d: arcPath(-100, 100, r), fill: "none", stroke: "rgba(247,247,244,0.12)", "stroke-width": 18, "stroke-linecap": "round" }));
     // benchmark band 30-50
-    svg.appendChild(el("path", { d: arcPath(30, 50, r), fill: "none", stroke: "#D9A23B", "stroke-width": 18, "stroke-linecap": "butt", opacity: 0.85 }));
+    svg.appendChild(el("path", { d: arcPath(30, 50, r), fill: "none", stroke: "#B98A3D", "stroke-width": 18, "stroke-linecap": "butt", opacity: 0.85 }));
     // excellent band 50-100
-    svg.appendChild(el("path", { d: arcPath(50, 100, r), fill: "none", stroke: "#4F9D86", "stroke-width": 18, "stroke-linecap": "round", opacity: 0.55 }));
+    svg.appendChild(el("path", { d: arcPath(50, 100, r), fill: "none", stroke: "#2F7A68", "stroke-width": 18, "stroke-linecap": "round", opacity: 0.55 }));
     // value arc up to 49.3
-    svg.appendChild(el("path", { d: arcPath(-100, 49.3, r), fill: "none", stroke: "#E2603D", "stroke-width": 6, "stroke-linecap": "round" }));
+    svg.appendChild(el("path", { d: arcPath(-100, 49.3, r), fill: "none", stroke: "#C1542F", "stroke-width": 6, "stroke-linecap": "round" }));
 
     // needle
     const angle = valueToAngle(49.3) * Math.PI / 180;
     const nx = cx - (r - 6) * Math.cos(angle);
     const ny = cy - (r - 6) * Math.sin(angle);
-    svg.appendChild(el("line", { x1: cx, y1: cy, x2: nx, y2: ny, stroke: "#F6F7F5", "stroke-width": 3, "stroke-linecap": "round" }));
-    svg.appendChild(el("circle", { cx: cx, cy: cy, r: 6, fill: "#F6F7F5" }));
+    svg.appendChild(el("line", { x1: cx, y1: cy, x2: nx, y2: ny, stroke: "#F3F4F1", "stroke-width": 3, "stroke-linecap": "round" }));
+    svg.appendChild(el("circle", { cx: cx, cy: cy, r: 6, fill: "#F3F4F1" }));
 
     // tick labels
     [-100, 0, 30, 50, 100].forEach(v => {
       const a = valueToAngle(v) * Math.PI / 180;
       const tx = cx - (r + 22) * Math.cos(a);
       const ty = cy - (r + 22) * Math.sin(a);
-      const t = el("text", { x: tx, y: ty, "text-anchor": "middle", fill: "#9FB3B8", "font-size": "11", "font-family": "IBM Plex Mono, monospace" });
+      const t = el("text", { x: tx, y: ty, "text-anchor": "middle", fill: "#9FB4B1", "font-size": "11", "font-family": "IBM Plex Mono, monospace" });
       t.textContent = v;
       svg.appendChild(t);
     });
